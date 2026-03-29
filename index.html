@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SKINT? SORTED. 🌭</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;700;900&display=swap');
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --red: #E8001D;
+  --yellow: #FFD600;
+  --white: #FFFFFF;
+  --dark: #111111;
+  --pink: #FF4D8D;
+}
+
+body {
+  background: var(--white);
+  font-family: 'Nunito', sans-serif;
+  cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewport='0 0 32 32' style='font-size:24px'><text y='26'>🌭</text></svg>") 16 16, auto;
+}
+
+/* ===== HERO ===== */
+.hero {
+  background: var(--red);
+  padding: 60px 20px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '💸💸💸💸💸💸💸💸💸💸💸💸💸💸💸💸';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  font-size: 28px;
+  opacity: 0.15;
+  letter-spacing: -4px;
+  line-height: 1;
+  word-break: break-all;
+  pointer-events: none;
+}
+
+.sausage {
+  font-size: 80px;
+  animation: wobble 1.5s infinite;
+  display: block;
+  margin-bottom: 10px;
+}
+
+@keyframes wobble {
+  0%,100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+.hero h1 {
+  font-family: 'Boogaloo', cursive;
+  font-size: clamp(56px, 16vw, 120px);
+  color: var(--yellow);
+  line-height: 0.9;
+  text-shadow: 4px 4px 0 var(--dark);
+  margin-bottom: 16px;
+}
+
+.hero-sub {
+  font-size: clamp(18px, 4vw, 26px);
+  color: var(--white);
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.hero-sub2 {
+  font-size: clamp(14px, 3vw, 18px);
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 30px;
+}
+
+.hero-badge {
+  background: var(--yellow);
+  color: var(--dark);
+  font-family: 'Boogaloo', cursive;
+  font-size: clamp(22px, 5vw, 36px);
+  padding: 14px 32px;
+  border-radius: 50px;
+  display: inline-block;
+  transform: rotate(-2deg);
+  box-shadow: 4px 4px 0 var(--dark);
+  margin-bottom: 20px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,100% { transform: rotate(-2deg) scale(1); }
+  50% { transform: rotate(-2deg) scale(1.05); }
+}
+
+.scroll-hint {
+  color: rgba(255,255,255,0.6);
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* ===== TICKER ===== */
+.ticker {
+  background: var(--yellow);
+  padding: 14px 0;
+  overflow: hidden;
+  border-top: 3px solid var(--dark);
+  border-bottom: 3px solid var(--dark);
+}
+
+.ticker-inner {
+  display: flex;
+  gap: 60px;
+  animation: ticker 20s linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-item {
+  font-family: 'Boogaloo', cursive;
+  font-size: 22px;
+  color: var(--dark);
+}
+
+/* ===== CARDS ===== */
+.cards-section {
+  padding: 60px 20px;
+  background: var(--white);
+}
+
+.cards-section h2 {
+  font-family: 'Boogaloo', cursive;
+  font-size: clamp(36px, 8vw, 64px);
+  text-align: center;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.cards-section h2 span { color: var(--red); }
+
+.cards-caption {
+  text-align: center;
+  color: #666;
+  margin-bottom: 40px;
+  font-size: 16px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.card {
+  border: 3px solid var(--dark);
+  border-radius: 16px;
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s;
+  background: var(--white);
+}
+
+.card:hover { transform: translateY(-4px); }
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+}
+
+.card.red::before { background: var(--red); }
+.card.yellow::before { background: var(--yellow); }
+.card.pink::before { background: var(--pink); }
+.card.dark::before { background: var(--dark); }
+
+.card-emoji { font-size: 48px; margin-bottom: 12px; display: block; }
+
+.card-amount {
+  font-family: 'Boogaloo', cursive;
+  font-size: 48px;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.card.red .card-amount { color: var(--red); }
+.card.yellow .card-amount { color: #cc9900; }
+.card.pink .card-amount { color: var(--pink); }
+.card.dark .card-amount { color: var(--dark); }
+
+.card h3 {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.card .funny {
+  font-size: 13px;
+  color: #999;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+/* ===== STEPS ===== */
+.steps-section {
+  background: var(--dark);
+  padding: 70px 20px;
+}
+
+.steps-section h2 {
+  font-family: 'Boogaloo', cursive;
+  font-size: clamp(36px, 8vw, 64px);
+  color: var(--yellow);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.steps-caption {
+  text-align: center;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 50px;
+}
+
+.steps {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.step {
+  background: #1e1e1e;
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  border-left: 5px solid var(--yellow);
+}
+
+.step-num {
+  font-family: 'Boogaloo', cursive;
+  font-size: 44px;
+  color: var(--yellow);
+  line-height: 1;
+  min-width: 44px;
+}
+
+.step h3 {
+  color: var(--white);
+  font-size: 18px;
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+
+.step p {
+  color: rgba(255,255,255,0.65);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.step a {
+  color: var(--yellow);
+  font-weight: 700;
+}
+
+.step .say-this {
+  margin-top: 10px;
+  background: rgba(255,214,0,0.1);
+  border-left: 3px solid var(--yellow);
+  padding: 10px 14px;
+  border-radius: 0 8px 8px 0;
+  color: var(--yellow);
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* ===== COMEBACK STRIP ===== */
+.comeback {
+  background: var(--pink);
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.comeback h2 {
+  font-family: 'Boogaloo', cursive;
+  font-size: clamp(32px, 7vw, 60px);
+  color: var(--white);
+  text-shadow: 3px 3px 0 var(--dark);
+  margin-bottom: 12px;
+}
+
+.comeback p {
+  color: rgba(255,255,255,0.9);
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+.comeback-steps {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.comeback-step {
+  background: var(--white);
+  color: var(--dark);
+  font-weight: 900;
+  font-size: 15px;
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: 2px solid var(--dark);
+}
+
+/* ===== FOOTER CTA ===== */
+.footer-cta {
+  background: var(--yellow);
+  padding: 70px 20px;
+  text-align: center;
+  border-top: 4px solid var(--dark);
+}
+
+.footer-cta h2 {
+  font-family: 'Boogaloo', cursive;
+  font-size: clamp(40px, 10vw, 88px);
+  color: var(--dark);
+  line-height: 0.95;
+  margin-bottom: 16px;
+}
+
+.footer-cta p {
+  font-size: 18px;
+  color: var(--dark);
+  opacity: 0.7;
+  margin-bottom: 28px;
+}
+
+.big-btn {
+  background: var(--red);
+  color: var(--white);
+  font-family: 'Boogaloo', cursive;
+  font-size: clamp(22px, 5vw, 36px);
+  padding: 18px 48px;
+  border-radius: 50px;
+  text-decoration: none;
+  display: inline-block;
+  border: 3px solid var(--dark);
+  box-shadow: 5px 5px 0 var(--dark);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.big-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 var(--dark);
+}
+
+.footer-small {
+  margin-top: 16px;
+  font-size: 13px;
+  opacity: 0.5;
+}
+
+/* FADE IN */
+.fade { opacity:0; transform:translateY(24px); transition: opacity 0.5s, transform 0.5s; }
+.fade.in { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="sausage">🌭</span>
+  <h1>SKINT?<br>SORTED.</h1>
+  <p class="hero-sub">The government owes you actual money. 💰</p>
+  <p class="hero-sub2">Most people never claim it. Don't be most people.</p>
+  <div class="hero-badge">£19 BILLION UNCLAIMED 😤</div>
+  <br>
+  <p class="scroll-hint">↓ your money is down here ↓</p>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">🌭 FREE MONEY &nbsp;</span>
+    <span class="ticker-item">💸 THEY OWE YOU &nbsp;</span>
+    <span class="ticker-item">🔥 NO JOB NEEDED &nbsp;</span>
+    <span class="ticker-item">😤 CLAIM IT NOW &nbsp;</span>
+    <span class="ticker-item">🌭 FREE MONEY &nbsp;</span>
+    <span class="ticker-item">💸 THEY OWE YOU &nbsp;</span>
+    <span class="ticker-item">🔥 NO JOB NEEDED &nbsp;</span>
+    <span class="ticker-item">😤 CLAIM IT NOW &nbsp;</span>
+    <span class="ticker-item">🌭 FREE MONEY &nbsp;</span>
+    <span class="ticker-item">💸 THEY OWE YOU &nbsp;</span>
+    <span class="ticker-item">🔥 NO JOB NEEDED &nbsp;</span>
+    <span class="ticker-item">😤 CLAIM IT NOW &nbsp;</span>
+  </div>
+</div>
+
+<!-- MONEY CARDS -->
+<section class="cards-section fade">
+  <h2>YOUR <span>FREE MONEY</span> IS WAITING 🤑</h2>
+  <p class="cards-caption">No, seriously. This is real. We're not selling anything.</p>
+  <div class="cards">
+
+    <div class="card red fade">
+      <span class="card-emoji">💷</span>
+      <div class="card-amount">£90+</div>
+      <h3>Every. Single. Week.</h3>
+      <p>Universal Credit — if you're skint and not working full time, you're probably owed this. Every week. Straight to your bank.</p>
+      <p class="funny">"Wait it's that easy?" — yes mate, it really is 😭</p>
+    </div>
+
+    <div class="card yellow fade">
+      <span class="card-emoji">⚡</span>
+      <div class="card-amount">£150</div>
+      <h3>Off Your Bills. Now.</h3>
+      <p>Warm Home Discount. £150 knocked straight off your energy bill. Most people on benefits get it. Most people don't know it exists.</p>
+      <p class="funny">They're just hoping you don't ask 😤</p>
+    </div>
+
+    <div class="card pink fade">
+      <span class="card-emoji">🥫</span>
+      <div class="card-amount">FREE</div>
+      <h3>Actual Food. Today.</h3>
+      <p>Food banks across the UK. No shame. No judgement. Just food. If you're hungry right now, this is a real option.</p>
+      <p class="funny">LadBaby would want you to eat 🌭</p>
+    </div>
+
+    <div class="card dark fade">
+      <span class="card-emoji">🏠</span>
+      <div class="card-amount">£000s</div>
+      <h3>Free Boiler. Free Insulation.</h3>
+      <p>ECO4 scheme. Government literally pays to upgrade your home. New boiler, insulation, the lot. You just fill in a form.</p>
+      <p class="funny">Warmer house + lower bills = 🤯</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW TO GET IT -->
+<section class="steps-section fade">
+  <h2>HOW TO GET IT 👇</h2>
+  <p class="steps-caption">Spell it out. Every step. Dead easy.</p>
+  <div class="steps">
+
+    <div class="step fade">
+      <div class="step-num">1</div>
+      <div>
+        <h3>Find out what you're actually owed</h3>
+        <p>Go to <a href="https://www.entitledto.co.uk" target="_blank">entitledto.co.uk</a> right now. Type in your situation. It tells you exactly what you can claim. Takes 10 minutes. Completely free.</p>
+        <p class="say-this">"Lads I just found out I'm owed £200 a month 😭😭"</p>
+      </div>
+    </div>
+
+    <div class="step fade">
+      <div class="step-num">2</div>
+      <div>
+        <h3>Claim Universal Credit</h3>
+        <p>Go to <a href="https://www.gov.uk/universal-credit/how-to-claim" target="_blank">gov.uk/universal-credit</a>. Make an account. Fill it in. If you're waiting for first payment — ring them and say these exact words:</p>
+        <p class="say-this">"I need an advance payment please." They must give it you. By law.</p>
+      </div>
+    </div>
+
+    <div class="step fade">
+      <div class="step-num">3</div>
+      <div>
+        <h3>Get £150 off your energy bill</h3>
+        <p>Go to your energy supplier's website. Search "Warm Home Discount." Click apply. That's it. £150. Free money.</p>
+        <p class="say-this">"I didn't even know this was a thing" — literally everyone when they find out 😤</p>
+      </div>
+    </div>
+
+    <div class="step fade">
+      <div class="step-num">4</div>
+      <div>
+        <h3>Running out of electric RIGHT NOW?</h3>
+        <p>Call your energy supplier. Say these exact words and nothing else:</p>
+        <p class="say-this">"I'm on a prepayment meter and I need emergency credit please." — they add it instantly. You pay it back slowly.</p>
+      </div>
+    </div>
+
+    <div class="step fade">
+      <div class="step-num">5</div>
+      <div>
+        <h3>Still stuck? One call sorts everything.</h3>
+        <p>Ring Citizens Advice free on <a href="tel:08001448848">0800 144 8848</a>. Tell them your situation. They know every trick. They're on your side. 100% free.</p>
+        <p class="say-this">No judgment. No forms. Just help.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMEBACK SECTION -->
+<section class="comeback fade">
+  <h2>BOOKMARK THIS. 📱<br>YOU'LL NEED IT AGAIN.</h2>
+  <p>Being skint isn't a one-time thing. Come back every time. Share it to someone who needs it.</p>
+  <div class="comeback-steps">
+    <span class="comeback-step">📱 iPhone: Share → Add to Home Screen</span>
+    <span class="comeback-step">🤖 Android: Menu → Add to Home Screen</span>
+    <span class="comeback-step">💻 Desktop: Ctrl+D</span>
+    <span class="comeback-step">💬 WhatsApp: Just send the link</span>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<section class="footer-cta fade">
+  <h2>STOP BEING<br>SKINT.<br>START NOW.</h2>
+  <p>It's free. It takes 10 minutes. They owe you this.</p>
+  <a href="https://www.entitledto.co.uk" target="_blank" class="big-btn">CHECK WHAT YOU'RE OWED 🌭</a>
+  <p class="footer-small">100% free. Always. No catches. Just your money.</p>
+</section>
+
+<script>
+const obs = new IntersectionObserver(els => {
+  els.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
